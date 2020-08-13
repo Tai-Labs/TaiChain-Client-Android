@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:gyf="http://schemas.android.com/tools"
+    android:id="@+id/drawer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/new_bg"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="80dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="22dp"
+                    android:paddingTop="20dp">
+
+                    <com.tai_chain.view.MText
+                        android:id="@+id/current_walllet_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="@string/my_wallet"
+                        android:textColor="@color/zt_main"
+                        android:textSize="@dimen/zt_22sp" />
+
+                    <ImageView
+                        android:id="@+id/lly_menu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@mipmap/ic_property_more" />
+                </LinearLayout>
+
+                <android.support.constraint.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="144dp"
+                    android:layout_marginEnd="22dp"
+                    android:layout_marginStart="22dp"
+                    android:background="@mipmap/property_card">
+
+                    <TextView
+                        android:id="@+id/home_total_labe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="25dp"
+                        android:text="@string/Home.Total.assets"
+                        android:textColor="#7A6222"
+                        android:textSize="@dimen/sp_12"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="15dp"
+                        android:text="≈"
+                        android:textColor="#222222"
+                        android:textSize="@dimen/zt_18sp"
+                        app:layout_constraintStart_toStartOf="@+id/home_total_labe"
+                        app:layout_constraintTop_toBottomOf="@+id/home_total_labe" />
+
+                    <com.tai_chain.view.MText
+                        android:id="@+id/tv_total_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:textColor="#222222"
+                        android:textSize="@dimen/zt_30sp"
+                        app:customTFont="BEBAS__.ttf"
+                        app:layout_constraintStart_toEndOf="@+id/textView3"
+                        app:layout_constraintTop_toBottomOf="@+id/home_total_labe" />
+
+                    <TextView
+                        android:id="@+id/property_wallet_address"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:drawablePadding="5dp"
+                        android:drawableRight="@mipmap/proterty_copy"
+                        android:ellipsize="middle"
+                        android:singleLine="true"
+                        android:textColor="#7A6222"
+                        android:textSize="@dimen/sp_12"
+                        app:layout_constraintStart_toStartOf="@+id/textView3"
+                        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+                </android.support.constraint.ConstraintLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="22dp">
+
+                    <TextView
+                        android:id="@+id/btn_scan"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/property_scan"
+                        android:gravity="center"
+                        android:text="@string/property_scan"
+                        android:textColor="@color/zt_main"
+                        android:textSize="@dimen/sp_12" />
+
+                    <TextView
+                        android:id="@+id/btn_send"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/property_zhuanzhang"
+                        android:gravity="center"
+                        android:text="@string/Button.send"
+                        android:textColor="@color/zt_main"
+                        android:textSize="@dimen/sp_12" />
+
+                    <TextView
+                        android:id="@+id/btn_receive"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:drawableTop="@mipmap/property_shoukuan"
+                        android:gravity="center"
+                        android:text="@string/Button.receive"
+                        android:textColor="@color/zt_main"
+                        android:textSize="@dimen/sp_12" />
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="22dp"
+                    android:paddingRight="22dp">
+
+                    <com.tai_chain.view.MText
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:text="@string/property_zc"
+                        android:textColor="@color/zt_main"
+                        android:textSize="@dimen/zt_22sp" />
+
+                    <ImageView
+                        android:id="@+id/lly_add_token"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="5dp"
+                        android:src="@mipmap/ic_property_add_ico"
+                        android:visibility="gone" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:overScrollMode="never" />
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <include layout="@layout/property_drawer_right_layout" />
+
+</android.support.v4.widget.DrawerLayout>

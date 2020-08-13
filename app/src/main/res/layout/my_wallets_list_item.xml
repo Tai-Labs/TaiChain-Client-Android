@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/wallet_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="85dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp">
+
+        <ImageView
+            android:id="@+id/wallet_item_icon"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/seek_wallet_icon" />
+
+
+        <com.tai_chain.view.MText
+            android:id="@+id/wallet_item_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/wallet_item_icon"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/wallet_item_icon"
+            android:text="TIT"
+            android:textColor="@color/zt_fff"
+            android:textSize="15sp"
+            app:customTFont="CircularPro-Bold.otf" />
+
+
+        <ImageView
+            android:id="@+id/wallet_manager_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_right_arrow" />
+
+        <TextView
+            android:id="@+id/wallet_item_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/wallet_item_icon"
+            android:layout_alignStart="@+id/wallet_item_name"
+            android:ellipsize="middle"
+            android:gravity="bottom"
+            android:maxWidth="180dp"
+            android:singleLine="true"
+            android:text="0xdfal;dfksa;d46565545565555"
+            android:textColor="@color/zt_main"
+            android:textSize="11sp" />
+    </RelativeLayout>
+
+    <com.tai_chain.view.MText
+        android:id="@+id/wallet_item_balance"
+        android:layout_width="match_parent"
+        android:layout_height="38dp"
+        android:layout_marginTop="-10dp"
+        android:gravity="right"
+        android:paddingEnd="20dp"
+        android:text="355.23TIT"
+        android:textColor="@color/zt_fff"
+        android:textSize="@dimen/zt_15sp"
+        app:customTFont="CircularPro-Bold.otf" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_height="0.5dp"
+        android:background="@color/line" />
+
+</LinearLayout>

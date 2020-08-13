@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/new_bg"
+    android:orientation="vertical"
+    tools:context=".UI.walletsetting.WalletSetting">
+
+    <include layout="@layout/title_project" />
+
+
+    <LinearLayout
+        android:id="@+id/set_wallet_rl"
+        android:layout_width="match_parent"
+        android:layout_height="148dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/set_wallet_icon"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@mipmap/seek_wallet_icon" />
+
+
+        <com.tai_chain.view.MText
+            android:id="@+id/set_wallet_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text=""
+            android:textColor="@color/zt_main"
+            android:textSize="12sp"
+            app:customTFont="CircularPro-Book.otf" />
+
+        <com.tai_chain.view.MText
+            android:id="@+id/set_wallet_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text=""
+            android:textColor="@color/zt_fff"
+            android:textSize="16sp"
+            app:customTFont="CircularPro-Bold.otf" />
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="57dp">
+
+
+        <com.tai_chain.view.MText
+            android:id="@+id/wallet_nick_tx"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/zt_fff"
+            android:textSize="14sp"
+            app:customTFont="CircularPro-Bold.otf" />
+
+        <com.tai_chain.view.MEdit
+            android:id="@+id/wallet_nick_et"
+            android:layout_width="180dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/mnemonic_backup_bg"
+            android:hint="@string/create_wallet_name"
+            android:paddingStart="10dp"
+            android:textColor="@color/zt_fff"
+            android:textSize="14sp"
+            android:visibility="gone"
+            app:customTFont="CircularPro-Bold.otf" />
+
+        <TextView
+            android:id="@+id/set_nick"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:drawablePadding="5dp"
+            android:drawableRight="@mipmap/ic_right_arrow"
+            android:gravity="center"
+            android:text="@string/Wallet.set.updata"
+            android:textColor="@color/zt_40fff"
+            android:textSize="@dimen/sp_12" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/line" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/set_password"
+        android:layout_width="match_parent"
+        android:layout_height="57dp">
+
+        <com.tai_chain.view.MText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:text="@string/Wallet.set.pwd"
+            android:textColor="@color/zt_fff"
+            android:textSize="14sp"
+            app:customTFont="CircularPro-Bold.otf" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:src="@mipmap/ic_right_arrow" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/line" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/set_mnemonic"
+        android:layout_width="match_parent"
+        android:layout_height="57dp">
+
+        <com.tai_chain.view.MText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:text="@string/Wallet.set.mnemonic"
+            android:textColor="@color/zt_fff"
+            android:textSize="14sp"
+            app:customTFont="CircularPro-Bold.otf" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:src="@mipmap/ic_right_arrow" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/line" />
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/set_privatekey"
+        android:layout_width="match_parent"
+        android:layout_height="57dp">
+
+        <com.tai_chain.view.MText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:text="@string/Wallet.set.privaekey"
+            android:textColor="@color/zt_fff"
+            android:textSize="14sp"
+            app:customTFont="CircularPro-Bold.otf" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:src="@mipmap/ic_right_arrow" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/line" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/set_keystore"
+        android:layout_width="match_parent"
+        android:layout_height="57dp">
+
+        <com.tai_chain.view.MText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="20dp"
+            android:text="@string/Wallet.set.keystore"
+            android:textColor="@color/zt_fff"
+            android:textSize="14sp"
+            app:customTFont="CircularPro-Bold.otf" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="20dp"
+            android:src="@mipmap/ic_right_arrow" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@color/line" />
+    </RelativeLayout>
+
+    <View
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+
+    <com.tai_chain.view.MText
+        android:id="@+id/button_del_wallet"
+        android:layout_width="match_parent"
+        android:layout_height="47dp"
+        android:layout_margin="20dp"
+        android:background="@drawable/bg_lu_huang"
+        android:gravity="center"
+        android:text="@string/del.wallet"
+        android:textColor="@color/zt_lu"
+        android:textSize="15sp"
+        app:customTFont="CircularPro-Bold.otf" />
+
+</LinearLayout>
