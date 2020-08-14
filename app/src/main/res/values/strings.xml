@@ -1,7 +1,7 @@
 <resources>
     <!-- App name -->
     <string name="set_pwd">Set Password</string>
-    <string name="app_name">TIT</string>
+    <string name="app_name">TIT Chain</string>
 
     <string name="Home.Discovery.input.hint">Please enter a Dapp address</string>
     <string name="create_recovery_create">Create Wallet</string>

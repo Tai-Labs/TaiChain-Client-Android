@@ -32,7 +32,7 @@
         android:drawableLeft="@mipmap/delete_wallet_jg"
         android:layout_marginTop="22dp"
         android:text="@string/delete_wallet_fxts"
-        android:textColor="@color/discovery_application_text_color"
+        android:textColor="@color/zt_main"
         android:textSize="22sp" />
 
     <TextView
@@ -49,7 +49,7 @@
         android:paddingRight="6dp"
         android:paddingTop="6dp"
         android:text="@string/delete_wallet_fxts01"
-        android:textColor="@color/zt_black"
+        android:textColor="@color/zt_fff"
         android:textSize="12sp" />
 
 
@@ -63,7 +63,7 @@
         android:background="@drawable/create_wallet_btn_bg_selector"
         android:gravity="center"
         android:text="@string/delete_wallet_btn"
-        android:textColor="@color/white"
+        android:textColor="@color/zt_black"
         android:textSize="13sp" />
 
 

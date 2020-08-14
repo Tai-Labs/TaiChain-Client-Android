@@ -29,7 +29,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
 
-public class ImportKeystoreFragment extends BaseFragment<CreateWalletView, CreateWalletPresenter> implements CreateWalletView  {
+public class ImportKeystoreFragment extends BaseFragment<CreateWalletView, CreateWalletPresenter> implements CreateWalletView {
 
 
     Unbinder unbinder;
@@ -97,11 +97,11 @@ public class ImportKeystoreFragment extends BaseFragment<CreateWalletView, Creat
                 String keyStore = etKeystore.getText().toString().trim();
                 String walletName = ksWalletName.getText().toString().trim();
                 String walletPwd = ksWalletPwd.getText().toString().trim();
-                boolean verifyWalletInfo = presenter.verifyKeystoreToAddress(getActivity(),keyStore, walletPwd,walletName, walletType);
+                boolean verifyWalletInfo = presenter.verifyKeystoreToAddress(getActivity(), keyStore, walletPwd, walletName, walletType);
                 if (!verifyWalletInfo) {
                     loadingDialog = new LoadingDialog(getActivity());
                     loadingDialog.show();
-                    createWalletInteract.loadWalletByKeystore(keyStore,walletPwd, walletName, walletType).subscribe(this::jumpToWalletBackUp, this::showError);
+                    createWalletInteract.loadWalletByKeystore(keyStore, walletPwd, walletName, walletType).subscribe(this::jumpToWalletBackUp, this::showError);
                 }
                 break;
         }
@@ -109,13 +109,14 @@ public class ImportKeystoreFragment extends BaseFragment<CreateWalletView, Creat
 
     public void showError(Throwable errorInfo) {
         loadingDialog.dismiss();
-        ToastUtils.showLongToast(getActivity(),errorInfo.toString());
+        ToastUtils.showLongToast(getActivity(), errorInfo.toString());
     }
 
     public void jumpToWalletBackUp(WalletBean wallet) {
         loadingDialog.dismiss();
-        ToastUtils.showLongToast(getActivity(),getResources().getString(R.string.load_wallet_ok));
-        WalletsMaster.getInstance().getWalletByIso(getActivity(), wallet.getId().substring(0, 4)).setmAddress(wallet.getAddress());
+        ToastUtils.showLongToast(getActivity(), getResources().getString(R.string.load_wallet_ok));
+        String wid = wallet.getId();
+        WalletsMaster.getInstance().getWalletByIso(getActivity(), wid.substring(0, wid.indexOf("-"))).setmAddress(wallet.getAddress());
         if (getActivity().getIntent().getIntExtra("from", 0) != 0) {
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
@@ -134,7 +135,7 @@ public class ImportKeystoreFragment extends BaseFragment<CreateWalletView, Creat
 
     }
 
-    TextWatcher textWatcher =new TextWatcher() {
+    TextWatcher textWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -143,10 +144,10 @@ public class ImportKeystoreFragment extends BaseFragment<CreateWalletView, Creat
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
             if (!Util.isNullOrEmpty(etKeystore.getText().toString())
-                    &&!Util.isNullOrEmpty(ksWalletName.getText().toString())
-                    &&!Util.isNullOrEmpty(ksWalletPwd.getText().toString())){
+                    && !Util.isNullOrEmpty(ksWalletName.getText().toString())
+                    && !Util.isNullOrEmpty(ksWalletPwd.getText().toString())) {
                 ksbtnLoadWallet.setEnabled(true);
-            }else {
+            } else {
                 ksbtnLoadWallet.setEnabled(false);
             }
 

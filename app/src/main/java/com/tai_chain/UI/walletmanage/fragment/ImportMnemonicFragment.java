@@ -132,7 +132,8 @@ public class ImportMnemonicFragment extends BaseFragment<CreateWalletView, Creat
     public void jumpToWalletBackUp(WalletBean wallet) {
         loadingDialog.dismiss();
         ToastUtils.showLongToast(getActivity(),getResources().getString(R.string.load_wallet_ok));
-        WalletsMaster.getInstance().getWalletByIso(getActivity(), wallet.getId().substring(0, 4)).setmAddress(wallet.getAddress());
+        String wid=wallet.getId();
+        WalletsMaster.getInstance().getWalletByIso(getActivity(), wid.substring(0, wid.indexOf("-"))).setmAddress(wallet.getAddress());
         if (getActivity().getIntent().getIntExtra("from", 0) != 0) {
             Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);

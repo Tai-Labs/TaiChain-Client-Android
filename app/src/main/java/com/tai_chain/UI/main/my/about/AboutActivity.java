@@ -112,9 +112,9 @@ public class AboutActivity extends BaseActivity<NormalView, NormalPresenter> imp
                 onBackPressed();
                 break;
             case R.id.updata_apk:
-                loadingDialog = new LoadingDialog(activity);
-                loadingDialog.show();
-                checkVersionUpdate();
+//                loadingDialog = new LoadingDialog(activity);
+//                loadingDialog.show();
+//                checkVersionUpdate();
                 break;
         }
     }

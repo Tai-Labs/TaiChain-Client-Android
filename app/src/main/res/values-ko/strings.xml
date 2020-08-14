@@ -2,7 +2,7 @@
 <resources>
     <!-- 韩语 -->
     <string name="set_pwd">비밀번호 설정하기</string>
-    <string name="app_name">TIT</string>
+    <string name="app_name">TIT Chain</string>
 
     <string name="Home.Discovery.input.hint">Dapp주소를 입력하세요</string>
     <string name="create_recovery_create">지갑 만들기</string>
