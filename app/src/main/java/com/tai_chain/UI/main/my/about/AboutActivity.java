@@ -112,9 +112,9 @@ public class AboutActivity extends BaseActivity<NormalView, NormalPresenter> imp
                 onBackPressed();
                 break;
             case R.id.updata_apk:
-//                loadingDialog = new LoadingDialog(activity);
-//                loadingDialog.show();
-//                checkVersionUpdate();
+                loadingDialog = new LoadingDialog(activity);
+                loadingDialog.show();
+                checkVersionUpdate();
                 break;
         }
     }
@@ -151,12 +151,11 @@ public class AboutActivity extends BaseActivity<NormalView, NormalPresenter> imp
                             }
                             JSONObject json = new JSONObject(result);
                             MyLog.i("onRequestVersionSuccess: json==" + json);
-                            JSONObject json1 = new JSONObject(json.getString("result"));
 
-                            String dlUrl = json1.getString("url");
-                            String dlContent = json1.getString("content");
-                            String versionCode = json1.getString("versionCode");
-                            String versionName = json1.getString("version");
+                            String dlUrl = json.getString("AndroidURL");
+                            String dlContent = json.getString("Describe");
+                            String versionCode = json.getString("AndroidVersionCode");
+                            String versionName = json.getString("AndroidVersionName");
 
                             StringBuilder stringBuilder = new StringBuilder();
                             stringBuilder.append(getString(R.string.current_version));
@@ -177,7 +176,7 @@ public class AboutActivity extends BaseActivity<NormalView, NormalPresenter> imp
                                 return uiData;
                             } else {
                                 loadingDialog.dismiss();
-                                ToastUtils.showLongToast(activity, "已是最新版本");
+                                ToastUtils.showLongToast(activity, getString(R.string.latest_ersion));
                                 return null;
                             }
 

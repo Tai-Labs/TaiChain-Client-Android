@@ -1,5 +1,6 @@
 package com.tai_chain.UI.walletsetting.updatePassword;
 
+import android.annotation.SuppressLint;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.graphics.drawable.GradientDrawable;
@@ -12,11 +13,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.tai_chain.R;
+import com.tai_chain.UI.tools.threads.TITExecutor;
 import com.tai_chain.base.BaseActivity;
 import com.tai_chain.bean.WalletBean;
 import com.tai_chain.UI.walletsetting.ModifyWalletInteract;
 import com.tai_chain.utils.ToastUtils;
 import com.tai_chain.utils.Util;
+import com.tai_chain.view.LoadingDialog;
 import com.tai_chain.view.MEdit;
 import com.tai_chain.view.MText;
 
@@ -51,6 +54,7 @@ public class UpdatePasswordActivity extends BaseActivity<UpdatePwdView, UpdatePw
 
     WalletBean walletBean;
     ModifyWalletInteract modifyWalletInteract;
+    private LoadingDialog loadingDialog;
 
 
     @Override
@@ -101,6 +105,7 @@ public class UpdatePasswordActivity extends BaseActivity<UpdatePwdView, UpdatePw
         ButterKnife.bind(this);
     }
 
+    @SuppressLint("CheckResult")
     @OnClick({R.id.iv_back, R.id.updata_pwd_btn})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -112,10 +117,13 @@ public class UpdatePasswordActivity extends BaseActivity<UpdatePwdView, UpdatePw
                 String pwd = newPwd.getText().toString().trim();
                 String pwdAgain = affirmPwd.getText().toString().trim();
                 if (presenter.verifyPassword(activity, oldPwd, pwd, pwdAgain, walletBean.getPassword())) {
+                    loadingDialog = new LoadingDialog(activity);
+                    loadingDialog.show();
                     modifyWalletInteract.modifyWalletPwd(walletBean.getId(), oldPwd, pwd).subscribe(this::modifyPwdSuccess);
                 }
                 break;
         }
+
     }
 
     TextWatcher watcher = new TextWatcher() {
@@ -143,6 +151,7 @@ public class UpdatePasswordActivity extends BaseActivity<UpdatePwdView, UpdatePw
     };
 
     public void modifyPwdSuccess(boolean b) {
+        loadingDialog.dismiss();
         if (b) {
             ToastUtils.showLongToast(activity, R.string.modify_password_success);
             finish();

@@ -67,7 +67,7 @@ public class SendVerifyPopuWindow extends PopupWindow implements View.OnClickLis
         mPopView.findViewById(R.id.back_button).setOnClickListener(this);
         ruAddress.setText(to);
         fuAddress.setText(from);
-        sendKGF.setText(kgf);
+        sendKGF.setText("0");
         sendMoney.setText(money);
     }
 

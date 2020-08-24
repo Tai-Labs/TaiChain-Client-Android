@@ -212,5 +212,6 @@
     <string name="About.footer">Produced by the global TIT team.Version % 1 $s</string>
     <string name="About.title">About us</string>
     <string name="About_updata">Check the update</string>
+    <string name="latest_ersion">Is the latest version</string>
 
 </resources>

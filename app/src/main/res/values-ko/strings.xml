@@ -209,4 +209,5 @@
     <string name="About.footer">전 세계 TIT 팀이 제작합니다.버전 %1$s</string>
     <string name="About.title">우리가 어떻게</string>
     <string name="About_updata">업데이트 확인</string>
+    <string name="latest_ersion">최신 버전입니다</string>
 </resources>

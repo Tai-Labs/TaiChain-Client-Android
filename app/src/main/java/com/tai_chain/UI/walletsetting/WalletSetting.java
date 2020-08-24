@@ -22,6 +22,7 @@ import com.tai_chain.UI.walletsetting.BackupMnemonic.MnemonicBackupActivity;
 import com.tai_chain.UI.walletsetting.exportKeystore.ExportKeystoreActivity;
 import com.tai_chain.UI.walletsetting.updatePassword.UpdatePasswordActivity;
 import com.tai_chain.sqlite.BalanceDataSource;
+import com.tai_chain.sqlite.WalletDataStore;
 import com.tai_chain.utils.CurrencyUtils;
 import com.tai_chain.utils.TITKeyStore;
 import com.tai_chain.utils.Md5Utils;
@@ -71,6 +72,7 @@ public class WalletSetting extends BaseActivity<NormalView, NormalPresenter> {
     private ModifyWalletInteract modifyWalletInteract;
     private PrivateKeyDerivetDialog privateKeyDerivetDialog;
     private boolean isDone = false;
+    String wid;
 
     @Override
     protected int getLayoutId() {
@@ -115,6 +117,14 @@ public class WalletSetting extends BaseActivity<NormalView, NormalPresenter> {
     @Override
     public void initEvent() {
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (!Util.isNullOrEmpty(wid)) {
+            wallet = WalletDataStore.getInstance().queryWallet(wid);
+        }
     }
 
     @Override
@@ -228,6 +238,7 @@ public class WalletSetting extends BaseActivity<NormalView, NormalPresenter> {
                 });
                 break;
             case R.id.set_password:
+                wid = wallet.getId();
                 startActivity(new Intent(WalletSetting.this, UpdatePasswordActivity.class).putExtra("wallet", wallet));
                 break;
             case R.id.iv_back:

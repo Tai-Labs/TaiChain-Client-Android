@@ -363,5 +363,6 @@
     <string name="About.footer">由全球 TIT 团队制作。版本%1$s</string>
     <string name="About.title">关于我们</string>
     <string name="About_updata">检查更新</string>
+    <string name="latest_ersion">已是最新版本</string>
 
 </resources>

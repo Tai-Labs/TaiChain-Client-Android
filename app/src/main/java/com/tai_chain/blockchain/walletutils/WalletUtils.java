@@ -438,17 +438,21 @@ public class WalletUtils {
         ECKeyPair keypair = null;
         try {
             credentials = org.web3j.crypto.WalletUtils.loadCredentials(oldPassword, ethWallet.getKeystorePath());
+            MyLog.i("modifyPassword---1");
             keypair = credentials.getEcKeyPair();
             File destinationDirectory = new File(AppFilePath.Wallet_DIR, "keystore_" + walletId + ".json");
             WalletFile walletFile = Wallet.createLight(newPassword, keypair);
             objectMapper.writeValue(destinationDirectory, walletFile);
-
+            MyLog.i("modifyPassword---2");
             ethWallet.setPassword(Md5Utils.md5(newPassword));
+            MyLog.i("modifyPassword---3");
             return WalletDataStore.getInstance().updataWallet(getContentValues(ethWallet), walletId);
         } catch (CipherException e) {
             e.printStackTrace();
+            MyLog.i("modifyPassword---"+e.getMessage());
         } catch (IOException e) {
             e.printStackTrace();
+            MyLog.i("modifyPassword---"+e.getMessage());
         }
         return false;
     }

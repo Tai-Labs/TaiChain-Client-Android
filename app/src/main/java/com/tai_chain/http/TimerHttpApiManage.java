@@ -39,7 +39,6 @@ public class TimerHttpApiManage {
 
     private Handler handler;
 
-    private static String seekusdt = "0";
 
     private TimerHttpApiManage() {
         handler = new Handler();
@@ -139,27 +138,36 @@ public class TimerHttpApiManage {
     }
 
     /**
-     * ETZ相对于Btc汇率
+     * TIT相对于Btc汇率
      *
      * @param context
      */
     @WorkerThread
     private synchronized void updateETZRates(Context context) {
 
-//        HttpRequets.getRequets(BaseUrl.HTTP_SEEK_RATE, getClass(), new HashMap<String, String>(), new JsonCallback<TitRateBean>() {
-//            @Override
-//            public void onSuccess(Response<TitRateBean> response) {
-//                MyLog.i(response.toString());
-//                if (response.body() != null) {
-//                    seekusdt = response.body().price;
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onError(Response<TitRateBean> response) {
-//            }
-//        });
+        HttpRequets.getRequets(BaseUrl.HTTP_SEEK_RATE, getClass(), new HashMap<String, String>(), new JsonCallback<ResponseBean<TitRateBean>>() {
+            @Override
+            public void onSuccess(Response<ResponseBean<TitRateBean>> response) {
+                MyLog.i(response.toString());
+                if (response.body() != null) {
+                    Set<CurrencyEntity> tmp = new LinkedHashSet<>();
+                    TitRateBean bean = response.body().data;
+                    float tr = 10000f / Float.valueOf(bean.BTCPrice) * Float.valueOf(bean.TITPrice) / 10000f;
+                    String code = "BTC";
+                    String name = "TIT";
+                    String rate = tr + "";
+                    String iso = "TIT";
+                    CurrencyEntity tit = new CurrencyEntity(code, name, Float.valueOf(rate), iso);
+                    tmp.add(tit);
+                    RatesDataSource.getInstance(context).putCurrencies(context, tmp);
+                }
+
+            }
+
+            @Override
+            public void onError(Response<ResponseBean<TitRateBean>> response) {
+            }
+        });
     }
 
     /***

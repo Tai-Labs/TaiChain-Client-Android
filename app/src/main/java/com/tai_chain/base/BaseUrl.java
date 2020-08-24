@@ -16,7 +16,7 @@ public class BaseUrl {
     public final static String HTTP_ADDRESS_ETH = "https://api.etherscan.io/api";
     public final static String HTTP_TOKEN_LISTURL = HTTP_ADDRESS+"api/v1/getTokenList";
     public final static String HTTP_UPDATE_RATES = "https://bitpay.com/rates";
-    public final static String HTTP_SEEK_RATE = "https://api.hoo.com/tickers/seekusdt";//seek价格对usdt
+    public final static String HTTP_SEEK_RATE = "https://api.titprotocol.com/logic/account/getprice";
     public final static String HTTP_ETH_RATES = "https://api.coinmarketcap.com/v1/ticker/?limit=10&convert=BTC";
 //    public final static String HTTP_ETH_RPC = "http://3.0.218.168:9646";
     public final static String HTTP_ETH_RPC = "https://api.breadwallet.com";
@@ -129,7 +129,7 @@ public class BaseUrl {
 
     //請求版本更新
     public static String versionCheekUrl(){
-        return  "https://app.seekchain.org/airdropapi/api/v1/versionCheck";
+        return  "https://api.titprotocol.com/logic/account/getWalletVersion";
     }
 
 }

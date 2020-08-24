@@ -1,16 +1,24 @@
 package com.tai_chain.UI.main;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.allenliu.versionchecklib.core.http.HttpRequestMethod;
+import com.allenliu.versionchecklib.v2.AllenVersionChecker;
+import com.allenliu.versionchecklib.v2.builder.UIData;
+import com.allenliu.versionchecklib.v2.callback.RequestVersionListener;
 import com.tai_chain.R;
 import com.tai_chain.UI.tools.threads.TITExecutor;
 import com.tai_chain.adapter.HomePagerAdapter;
 import com.tai_chain.base.BaseActivity;
+import com.tai_chain.base.BaseUrl;
 import com.tai_chain.base.Constants;
 import com.tai_chain.UI.main.discovery.FragmentDiscovery;
 import com.tai_chain.UI.main.my.FragmentMy;
@@ -23,6 +31,8 @@ import com.tai_chain.utils.ToastUtils;
 import com.tai_chain.utils.Util;
 //import com.tai_chain.utils.nodeUtiles;
 import com.tai_chain.view.NoScrollViewPager;
+
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,12 +78,7 @@ public class MainActivity extends BaseActivity<NormalView, NormalPresenter> impl
         vpHome.setAdapter(homePagerAdapter);
         vpHome.setCurrentItem(0, false);
         isClickLL(true, false, false);
-//        TITExecutor.getInstance().forLightWeightBackgroundTasks().execute(new Runnable() {
-//            @Override
-//            public void run() {
-//                nodeUtiles.seekNodeList();
-//            }
-//        });
+        checkVersionUpdate();
     }
 
     @Override
@@ -101,7 +106,7 @@ public class MainActivity extends BaseActivity<NormalView, NormalPresenter> impl
                 vpHome.setCurrentItem(0, false);
                 break;
             case R.id.main_ll_discivery:
-                ToastUtils.showLongToast(activity,R.string.staytuned);
+                ToastUtils.showLongToast(activity, R.string.staytuned);
 //                isClickLL(false, true, false);
 //                vpHome.setCurrentItem(1, false);
                 break;
@@ -139,13 +144,13 @@ public class MainActivity extends BaseActivity<NormalView, NormalPresenter> impl
                 String result = data.getStringExtra("result");
                 MyLog.i("**************" + result);
 
-                if (!Util.isNullOrEmpty(result)&&Util.isAddressValid(result)){
-                    Intent intent =new Intent(this, SendActivity.class);
-                    intent.putExtra("toAddress",result);
-                    intent.putExtra("iso","TIT");
+                if (!Util.isNullOrEmpty(result) && Util.isAddressValid(result)) {
+                    Intent intent = new Intent(this, SendActivity.class);
+                    intent.putExtra("toAddress", result);
+                    intent.putExtra("iso", "TIT");
                     startActivity(intent);
-                }else {
-                    ToastUtils.showLongToast(activity,R.string.Send_invalidAddressTitle);
+                } else {
+                    ToastUtils.showLongToast(activity, R.string.Send_invalidAddressTitle);
                 }
 
 //                if (CryptoUriParser.isCryptoUrl(MainActivity.this, result)) {
@@ -160,79 +165,78 @@ public class MainActivity extends BaseActivity<NormalView, NormalPresenter> impl
         }
     }
 
-//    public String getVersionCode() {
-//        Context ctx = this.getApplicationContext();
-//        PackageManager packageManager = ctx.getPackageManager();
-//        PackageInfo packageInfo;
-//        String versionCode = "";
-//        try {
-//            packageInfo = packageManager.getPackageInfo(ctx.getPackageName(), 0);
-//            versionCode = packageInfo.versionCode + "";
-//        } catch (PackageManager.NameNotFoundException e) {
-//            e.printStackTrace();
-//        }
-//        return versionCode;
-//    }
+    public String getVersionCode() {
+        Context ctx = this.getApplicationContext();
+        PackageManager packageManager = ctx.getPackageManager();
+        PackageInfo packageInfo;
+        String versionCode = "";
+        try {
+            packageInfo = packageManager.getPackageInfo(ctx.getPackageName(), 0);
+            versionCode = packageInfo.versionCode + "";
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+        return versionCode;
+    }
 
-//    public void checkVersionUpdate() {
-//        Context ctx = this.getApplicationContext();
-//        AllenVersionChecker
-//                .getInstance()
-//                .requestVersion()
-//                .setRequestMethod(HttpRequestMethod.GET)
-//                .setRequestUrl(BaseUrl.versionCheekUrl())
-//                .request(new RequestVersionListener() {
-//                    @Nullable
-//                    @Override
-//                    public UIData onRequestVersionSuccess(String result) {
-//
-//                        try {
-//                            if (Util.isNullOrEmpty(result)) {
-//                                MyLog.i("onRequestVersionSuccess: 获取新版本失败1");
-//                            }
-//                            JSONObject json = new JSONObject(result);
-//                            MyLog.i("onRequestVersionSuccess: json==" + json);
-//                            JSONObject json1 = new JSONObject(json.getString("result"));
-//
-//                            String dlUrl = json1.getString("url");
-//                            String dlContent = json1.getString("content");
-//                            String versionCode = json1.getString("versionCode");
-//                            String versionName = json1.getString("version");
-//
-//                            StringBuilder stringBuilder = new StringBuilder();
-//                            stringBuilder.append(getString(R.string.current_version));
-//                            stringBuilder.append(versionName);
-//                            stringBuilder.append("\n");
-//                            stringBuilder.append(getString(R.string.update_content));
-//                            stringBuilder.append(dlContent);
-//
-//                            String finalString = stringBuilder.toString();
-//
-//                            if (Integer.parseInt(versionCode) > Integer.parseInt(getVersionCode())) {
-//                                UIData uiData = UIData
-//                                        .create()
-//                                        .setDownloadUrl(dlUrl)
-//                                        .setTitle(getString(R.string.download_latest_version))
-//                                        .setContent(finalString);
-//                                return uiData;
-//                            } else {
-//                                return null;
-//                            }
-//
-//                        } catch (Exception e) {
-//                            MyLog.i("onRequestVersionSuccess: 获取新版本失败2");
-//                        }
-//
-//                        return null;
-//                    }
-//
-//                    @Override
-//                    public void onRequestVersionFailure(String message) {
-//
-//                    }
-//                })
-//                .excuteMission(ctx);
-//
-//    }
+    public void checkVersionUpdate() {
+        Context ctx = this.getApplicationContext();
+        AllenVersionChecker
+                .getInstance()
+                .requestVersion()
+                .setRequestMethod(HttpRequestMethod.GET)
+                .setRequestUrl(BaseUrl.versionCheekUrl())
+                .request(new RequestVersionListener() {
+                    @Nullable
+                    @Override
+                    public UIData onRequestVersionSuccess(String result) {
+
+                        try {
+                            if (Util.isNullOrEmpty(result)) {
+                                MyLog.i("onRequestVersionSuccess: 获取新版本失败1");
+                            }
+                            JSONObject json = new JSONObject(result);
+                            MyLog.i("onRequestVersionSuccess: json==" + json);
+
+                            String dlUrl = json.getString("AndroidURL");
+                            String dlContent = json.getString("Describe");
+                            String versionCode = json.getString("AndroidVersionCode");
+                            String versionName = json.getString("AndroidVersionName");
+
+                            StringBuilder stringBuilder = new StringBuilder();
+                            stringBuilder.append(getString(R.string.current_version));
+                            stringBuilder.append(versionName);
+                            stringBuilder.append("\n");
+                            stringBuilder.append(getString(R.string.update_content));
+                            stringBuilder.append(dlContent);
+
+                            String finalString = stringBuilder.toString();
+
+                            if (Integer.parseInt(versionCode) > Integer.parseInt(getVersionCode())) {
+                                UIData uiData = UIData
+                                        .create()
+                                        .setDownloadUrl(dlUrl)
+                                        .setTitle(getString(R.string.download_latest_version))
+                                        .setContent(finalString);
+                                return uiData;
+                            } else {
+                                return null;
+                            }
+
+                        } catch (Exception e) {
+                            MyLog.i("onRequestVersionSuccess: 获取新版本失败2");
+                        }
+
+                        return null;
+                    }
+
+                    @Override
+                    public void onRequestVersionFailure(String message) {
+
+                    }
+                })
+                .excuteMission(ctx);
+
+    }
 
 }
