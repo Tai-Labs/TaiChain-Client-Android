@@ -23,6 +23,7 @@ import com.tai_chain.UI.walletsetting.exportKeystore.ExportKeystoreActivity;
 import com.tai_chain.UI.walletsetting.updatePassword.UpdatePasswordActivity;
 import com.tai_chain.sqlite.BalanceDataSource;
 import com.tai_chain.sqlite.WalletDataStore;
+import com.tai_chain.utils.AddressUtils;
 import com.tai_chain.utils.CurrencyUtils;
 import com.tai_chain.utils.TITKeyStore;
 import com.tai_chain.utils.Md5Utils;
@@ -105,7 +106,7 @@ public class WalletSetting extends BaseActivity<NormalView, NormalPresenter> {
             setWalletName.setText("0 TIT");
         }
 
-        setWalletAddress.setText(wallet.getAddress());
+        setWalletAddress.setText(AddressUtils.addr0X2TIT(wallet.getAddress()));
     }
 
     @Override

@@ -37,6 +37,7 @@ import com.tai_chain.UI.walletmanage.importwallet.ImportWallet;
 import com.tai_chain.UI.walletoperation.receive.ReceiveQrCodeActivity;
 import com.tai_chain.UI.walletoperation.send.SendActivity;
 import com.tai_chain.UI.walletoperation.wallet.WalletActivity;
+import com.tai_chain.utils.AddressUtils;
 import com.tai_chain.utils.ClipboardManager;
 import com.tai_chain.utils.CurrencyUtils;
 import com.tai_chain.utils.TITAnimator;
@@ -140,7 +141,7 @@ public class PropertyFragment extends BaseFragment<PropertyView, PropertyPresent
                         presenter.totalAssets(recyclerAdapter.getData()), -1);
 //                tvWalletName.setText(wallet.getName());
                 tvTotalValue.setText(assetValue);
-                tvWalletAddress.setText(wallet.getAddress());
+                tvWalletAddress.setText(AddressUtils.addr0X2TIT(wallet.getAddress()));
             }
         });
 
@@ -225,7 +226,7 @@ public class PropertyFragment extends BaseFragment<PropertyView, PropertyPresent
         Intent intent = null;
         switch (view.getId()) {
             case R.id.property_wallet_address:
-                ClipboardManager.putClipboard(MainActivity.getApp(), wallet.address);
+                ClipboardManager.putClipboard(MainActivity.getApp(),AddressUtils.addr0X2TIT(wallet.address) );
                 break;
             case R.id.btn_scan:
                 TITAnimator.openScanner(getActivity(), Constants.SCANNER_REQUEST);

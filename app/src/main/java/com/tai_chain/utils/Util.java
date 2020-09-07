@@ -83,7 +83,7 @@ public class Util {
 
     }
     public static boolean isAddressValid(String address) {
-        String regExp="^0[xX][0-9a-fA-F]{40}$";
+        String regExp="^[tT][iI][tT][0-9a-fA-F]{40}$";
         return address.matches(regExp);
 //        return !isNullOrEmpty(address) && address.startsWith("0x")&&address.length()==42;
     }

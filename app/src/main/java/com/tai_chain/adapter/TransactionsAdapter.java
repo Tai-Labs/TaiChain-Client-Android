@@ -9,6 +9,7 @@ import com.tai_chain.adapter.baseAdapter.base.MyBaseViewHolder;
 import com.tai_chain.base.Constants;
 import com.tai_chain.bean.TokenInfo;
 import com.tai_chain.bean.TransactionRecords;
+import com.tai_chain.utils.AddressUtils;
 import com.tai_chain.utils.CurrencyUtils;
 import com.tai_chain.utils.DateUtil;
 import com.tai_chain.utils.Util;
@@ -49,7 +50,7 @@ public class TransactionsAdapter extends BaseQuickAdapter<TransactionRecords, My
         BigDecimal cryptoAmount = new BigDecimal(item.value).abs();
         String formattedAmount = CurrencyUtils.getFormattedAmount(mContext, tokenInfo.symbol, cryptoAmount, Constants.MAX_DECIMAL_PLACES_FOR_UI);
         helper.setText(R.id.tx_amount, item.value + "TIT");
-        helper.setText(R.id.tx_description, !commentString.isEmpty() ? commentString : (!received ? item.to : item.from));
+        helper.setText(R.id.tx_description, AddressUtils.addr0X2TIT(!commentString.isEmpty() ? commentString : (!received ? item.to : item.from)));
         //if it's 0 we use the current time.
         long timeStamp = Long.valueOf(item.date) == 0 ? System.currentTimeMillis() : Long.valueOf(item.date) * DateUtils.SECOND_IN_MILLIS;
 

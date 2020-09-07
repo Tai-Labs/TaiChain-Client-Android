@@ -19,6 +19,7 @@ import com.tai_chain.blockchain.TitWalletManager;
 import com.tai_chain.UI.walletoperation.CreateTransactionInteract;
 import com.tai_chain.UI.walletoperation.EthereumNetworkRepository;
 import com.tai_chain.sqlite.BalanceDataSource;
+import com.tai_chain.utils.AddressUtils;
 import com.tai_chain.utils.TITAnimator;
 import com.tai_chain.utils.KeyBoardUtil;
 import com.tai_chain.utils.MyLog;
@@ -105,7 +106,7 @@ public class SendActivity extends BaseActivity<SendView, SendPresenter> implemen
 //                        String data = createTransaction.createTokenTransferData(s.toString(), Convert.toWei("1", Convert.Unit.ETHER).toBigInteger());
 //                        presenter.getGasEstimate(activity, contract, currentWallet.address,  data);
             } else {
-                presenter.getGasEstimate(activity, toAddress, currentWallet.address, "0x");
+                presenter.getGasEstimate(activity, toAddress,  currentWallet.address, "0x");
             }
         }
 
@@ -252,14 +253,16 @@ public class SendActivity extends BaseActivity<SendView, SendPresenter> implemen
 
 
     private void show0nfirmation(String to, String amount, BigInteger gasL, BigInteger gasP, String data, String kgf) {
-        svpw = new SendVerifyPopuWindow(this, to, currentWallet.address, kgf, amount);
+
+        svpw = new SendVerifyPopuWindow(this, to,AddressUtils.addr0X2TIT(currentWallet.address) , kgf, amount);
         svpw.showAtLocation(findViewById(R.id.activity_transfer), Gravity.BOTTOM | Gravity.CENTER_HORIZONTAL, 0, 0);
         svpw.setOnSendPwdClickListener(new SendVerifyPopuWindow.OnSendPwdClickListener() {
             @Override
             public void setOnSendPwd(String pwd) {
+                String addr= AddressUtils.addrTit20x(to);
                 if (isSendingTokens) {
                     createTransaction.createERC20Transfer(currentWallet,
-                            to,
+                            addr,
                             token.address,
                             Convert.toWei(amount, Convert.Unit.ETHER).toBigInteger(),
                             gasP,
@@ -273,7 +276,7 @@ public class SendActivity extends BaseActivity<SendView, SendPresenter> implemen
                     loadingDialog.show();
                     loadingDialog.setLoadingContent(getString(R.string.is_submitting));
                     createTransaction.createTransaction(currentWallet,
-                            to,
+                            addr,
                             Convert.toWei(amount, Convert.Unit.ETHER).toBigInteger(),
                             gasP,
                             gasL,

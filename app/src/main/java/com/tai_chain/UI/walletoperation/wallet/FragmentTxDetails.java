@@ -19,6 +19,7 @@ import com.tai_chain.bean.TransactionRecords;
 import com.tai_chain.blockchain.BaseWalletManager;
 import com.tai_chain.blockchain.TitWalletManager;
 import com.tai_chain.UI.walletmanage.WalletsMaster;
+import com.tai_chain.utils.AddressUtils;
 import com.tai_chain.utils.ClipboardManager;
 import com.tai_chain.utils.CurrencyUtils;
 import com.tai_chain.utils.DateUtil;
@@ -131,7 +132,7 @@ public class FragmentTxDetails extends DialogFragment {
         mTxAction.setText(!mTransaction.isReceived ? getString(R.string.TransactionDetails_titleSent) : getString(R.string.TransactionDetails_titleReceived));
         mToFrom.setText(!mTransaction.isReceived ? getString(R.string.Confirmation_to) + " " : getString(R.string.TransactionDetails_addressViaHeader) + " ");
 
-        mToFromAddress.setText(!mTransaction.isReceived ? mTransaction.to : mTransaction.from); //showing only the destination address
+        mToFromAddress.setText(AddressUtils.addr0X2TIT(!mTransaction.isReceived ? mTransaction.to : mTransaction.from)); //showing only the destination address
 
         mToFromAddress.setOnClickListener(new View.OnClickListener() {
             @Override

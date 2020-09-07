@@ -100,12 +100,13 @@ public abstract class BaseActivity<V, P extends BasePresent<V>> extends AutoLayo
             ImmersionBar.with(this)
                     .titleBar(mCommonToolbar, false)
                     .transparentStatusBar()
-                    .statusBarDarkFont(true, 1f)
-                    .navigationBarColor(R.color.balance_crypto_color)
+//                    .statusBarDarkFont(true, 1f)
+//                    .navigationBarColor(R.color.balance_crypto_color)
                     .init();
             setSupportActionBar(mCommonToolbar);
         }
         mImmersionBar.keyboardEnable(true); //解决软键盘与底部输入框冲突问题;
+//        mImmersionBar.statusBarDarkFont(true, 1f);
         KeyboardPatch.patch(this).enable();
         mImmersionBar.init();
     }

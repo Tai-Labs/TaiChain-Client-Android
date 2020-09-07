@@ -10,6 +10,7 @@ import com.tai_chain.adapter.baseAdapter.base.MyBaseViewHolder;
 import com.tai_chain.bean.WalletBean;
 import com.tai_chain.UI.walletsetting.WalletSetting;
 import com.tai_chain.sqlite.BalanceDataSource;
+import com.tai_chain.utils.AddressUtils;
 import com.tai_chain.utils.CurrencyUtils;
 import com.tai_chain.utils.Util;
 
@@ -27,7 +28,7 @@ public class WalletManageAdapter extends BaseQuickAdapter<WalletBean, MyBaseView
     protected void convert(MyBaseViewHolder helper, WalletBean item) {
         Map<String, String> balances = BalanceDataSource.getInstance().getWalletTokensBalance(item.getId());
         helper.setText(R.id.wallet_item_name, item.getName());
-        helper.setText(R.id.wallet_item_address, item.getAddress());
+        helper.setText(R.id.wallet_item_address, AddressUtils.addr0X2TIT(item.getAddress()));
 
         if (balances.containsKey("TIT")) {
             String cryptoBalance = CurrencyUtils.getFormattedAmount(mContext, "TIT", new BigDecimal(Util.isNullOrEmpty(balances.get("TIT")) ? "0" : balances.get("TIT")));

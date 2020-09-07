@@ -20,17 +20,16 @@
         android:id="@+id/tx_description"
         android:layout_width="127dp"
         android:layout_height="37dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="14dp"
         android:layout_toRightOf="@+id/tx_status_icon"
-        android:paddingBottom="3dp"
         android:ellipsize="middle"
         android:gravity="bottom"
+        android:paddingBottom="3dp"
         android:singleLine="true"
         android:text="sent to f94c57..."
         android:textColor="@color/zt_main"
         android:textSize="15sp"
         app:customTFont="CircularPro-Book.otf" />
-
 
     <com.tai_chain.view.MText
 

@@ -12,6 +12,7 @@ import com.tai_chain.R;
 import com.tai_chain.UI.tools.threads.TITExecutor;
 import com.tai_chain.base.BaseActivity;
 import com.tai_chain.bean.TokenInfo;
+import com.tai_chain.utils.AddressUtils;
 import com.tai_chain.utils.ClipboardManager;
 import com.tai_chain.utils.MyLog;
 import com.tai_chain.utils.QRUtils;
@@ -67,7 +68,7 @@ public class ReceiveQrCodeActivity extends BaseActivity<ReceiveQrCodeView, Recei
 //            amountLayoutV.setVisibility(View.GONE);
 //        }
         if (Util.isNullOrEmpty(receiveAddress)) receiveAddress = token.address;
-        tvWalletAddress.setText(receiveAddress);
+        tvWalletAddress.setText(AddressUtils.addr0X2TIT(receiveAddress));
         isoText.setText(token.symbol);
 //        ImmersionBar.with(this)
 //                .transparentStatusBar()
@@ -159,7 +160,7 @@ public class ReceiveQrCodeActivity extends BaseActivity<ReceiveQrCodeView, Recei
             @Override
             public void run() {
 //                Uri uri = CryptoUriParser.createCryptoUrl(getApplication(), token.symbol, token.name, receiveAddress, new BigDecimal(amount), token.symbol, null, null);
-                Uri uri =  Uri.parse(receiveAddress);
+                Uri uri =  Uri.parse(AddressUtils.addr0X2TIT(receiveAddress));
                 boolean generated = QRUtils.generateQR(getApplication(), uri.toString(), ivGatheringQrcode);
                 if (!generated)
                     throw new RuntimeException("failed to generate qr image for address");
